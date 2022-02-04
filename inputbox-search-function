@@ -1,0 +1,32 @@
+    files: [{
+              fileName: 'a',
+              date: '02.01.2022',
+              image: { Dress },
+              doc: { PdfOnly },
+              lastUpdate: '20.01.2022',
+            }]
+            
+    //files set of array
+    //filterValue new state of array
+    componentWillMount() {
+        this.setState({
+            filterValue: this.state.files
+        })
+    }
+    
+    //when input box onChange event handleFilesSearch work
+    //searchValue get input chage event
+    handleFilesSearch = (e: any) => {
+        const searchValue = e.currentTarget.value;
+        this.setState(() => {
+            const filterValue = this.state.files.filter((element: any) => {
+                return element.fileName.toLowerCase().match(searchValue.toLowerCase());
+            });
+            return {
+                searchValue,
+                filterValue
+            };
+        }, () => {
+            console.log("files data=>", this.state.filterValue)
+        });
+    }
